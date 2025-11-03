@@ -1,0 +1,6 @@
+# Ignorar cachés de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
