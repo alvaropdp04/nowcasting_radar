@@ -3,7 +3,8 @@ from torchvision.models import resnet34, ResNet34_Weights
 from torchinfo import summary
 import torch.nn.functional as F
 import torch.nn as nn
-from convlstm import ConvLSTM
+from .convlstm import ConvLSTM
+import time
 
 
 
@@ -169,4 +170,4 @@ class modelMet(nn.Module):
 
 
 prueba_modelo = modelMet()
-print(summary(prueba_modelo, input_size=(2,4,1,300,300)))
+summary(prueba_modelo, input_size=(64,4,1,300,300))

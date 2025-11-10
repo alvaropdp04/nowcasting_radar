@@ -18,14 +18,14 @@ archivos = pd.read_csv("./data/raw/nombres.csv")
 #     print(da_value)
 
 
-archivo5 = archivos["nombres"][150]
-archivo6 = archivos["nombres"][151]
-archivo7 = archivos["nombres"][152]
-archivo8 = archivos["nombres"][153]
-archivo9 = archivos["nombres"][154]
-archivo10 = archivos["nombres"][155]
-archivo11 = archivos["nombres"][156]
-archivo12 = archivos["nombres"][157]
+archivo5 = archivos["nombres"][50263]
+archivo6 = archivos["nombres"][50264]
+archivo7 = archivos["nombres"][50265]
+archivo8 = archivos["nombres"][50266]
+archivo9 = archivos["nombres"][50267]
+archivo10 = archivos["nombres"][50268]
+archivo11 = archivos["nombres"][50269]
+archivo12 = archivos["nombres"][50270]
 
 da5 = open_mrms_refd(archivo5)
 da_crop5 = crop_nyc_300px2(da = da5)
