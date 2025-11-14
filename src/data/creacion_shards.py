@@ -7,7 +7,7 @@ from data_functions import open_mrms_refd, crop_nyc_300px2
 
 CSV_PATH    = "./data/raw/nombres.csv"     
 OUTPUT_DIR  = "./data/raw/shards"           
-SHARD_SIZE  = 100            
+SHARD_SIZE  = 1000
 NPY_COMPRESS = True
 
 
@@ -55,8 +55,9 @@ def build_shards_from_csv():
         da = open_mrms_refd(k)          
         da = crop_nyc_300px2(da)
         arr = da.values
-        arr[arr < -10.0] = np.nan
+        missing = np.isnan(arr)
         arr = np.clip(arr,-10,80)
+        arr[missing] = np.nan
         arr = arr.astype(np.float16)
         buf.append(arr)
 
