@@ -7,6 +7,8 @@ import tempfile
 from PIL import Image
 import matplotlib.pyplot as plt
 import time
+import glob
+import tarfile
 
 fs = s3fs.S3FileSystem(anon=True)
 
@@ -97,7 +99,6 @@ def crop_nyc_300px2(da: xr.DataArray, size=300,
         print("Recorte correcto")
     
     return da_crop
-
 
 
 
