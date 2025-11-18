@@ -3,7 +3,7 @@ import numpy as np
 import torch.nn as nn
 from piqa import MS_SSIM
 
-def loss_radar(pred, target, a, b):
+def loss_radar(pred, target, a = 5.0, b = 15.0):
     bins = torch.tensor([-10.,0.,10.,20.,30.,40.,50.,80.], device = target.device, dtype=target.dtype)
     bins_normalizados = (bins + 10) / 90
 
@@ -17,8 +17,10 @@ def loss_radar(pred, target, a, b):
                           ], device=target.device, dtype=target.dtype)
     
     loss_mse = nn.MSELoss(reduction = "none")
-    ms_ssim = MS_SSIM(data_range = 1.0)
-    matriz_pesos = pesos[torch.bucketize(target, boundaries= bins_normalizados) - 1]
+    ms_ssim = MS_SSIM(data_range = 1.0, size_average=True, channel=pred.shape[1])
+    indices = torch.bucketize(target, boundaries=bins_normalizados[1:])
+    indices = torch.clamp(indices, max=len(pesos) - 1)
+    matriz_pesos = pesos[indices]
     score_mse = loss_mse(pred, target)
     score_msssim = 1 - ms_ssim(pred, target)
     loss_final = a*((matriz_pesos*score_mse).mean()) + b*score_msssim
