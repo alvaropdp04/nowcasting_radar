@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from src.model.model import modelMet
-from validation_loop import val_loop
+from src.engine.validation_loop import val_loop
 
 
 device = "cuda:0"
@@ -14,7 +14,7 @@ def train_loop(model, optimizer, train_dataloader, val_dataloader, loss_module, 
         model.train()
         loss_epoch_train = 0.0
         for ventana, frame in train_dataloader:
-            ventana, frame = ventana.to(device), frame.to(device)
+            ventana, frame = ventana.to(device, dtype = torch.float32), frame.to(device, dtype = torch.float32)
             optimizer.zero_grad()
             pred = model(ventana)
             loss = loss_module(pred, frame, a = 5, b = 15)

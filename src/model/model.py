@@ -167,7 +167,3 @@ class modelMet(nn.Module):
         ht = self.neck(entrada_convlstm)
         out = self.decoder(ht, skips,(H,W))
         return out
-
-
-prueba_modelo = modelMet()
-summary(prueba_modelo, input_size=(64,4,1,300,300))
