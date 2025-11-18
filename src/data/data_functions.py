@@ -82,7 +82,7 @@ def crop_nyc_300px2(da: xr.DataArray, size=300,
     """
 
     if lon_center < 0:
-        lon_center = (lon_center + 360) % 360   # -74 → 286
+        lon_center = (lon_center + 360) % 360   # -74 -> 286
 
     lat_idx = int(np.abs(da.latitude - lat_center).argmin())
     lon_idx = int(np.abs(da.longitude - lon_center).argmin())
