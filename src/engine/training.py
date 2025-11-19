@@ -10,7 +10,7 @@ def run_training():
 
     device = "cuda:0"
 
-    modelo = modelMet().to(device)
+    modelo = modelMet(h = 128).to(device)
     optimizer = torch.optim.AdamW(modelo.parameters(), lr = 0.001, betas = (0.9, 0.999), weight_decay= 0.01)
     train_dataset,val_dataset,test_dataset = generar_dataset(path_shards= "/content/shards/*", props = [0.85,0.1,0.05])
     train_loader = generar_dataloaders(train_dataset, split = "train", batch_size= 180, num_workers= 8)

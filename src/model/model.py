@@ -123,10 +123,10 @@ class decoderMet(nn.Module):
         self.dec3 = decoderBlock(in_channels= 128, skip_channels= 64, out_channels= 64) # [-1, 64, 75, 75]
         self.dec4 = decoderBlock(in_channels = 64, skip_channels= 64, out_channels= 64) # [-1, 64, 150, 150]
 
-        self.skipLSTM1 = SkipConvLSTM(input_dim = 64, hidden_dim = 64) # Tanto en este, como en los demás, bajaríamos el hidden_dim si sufriésemos de memoria
-        self.skipLSTM2 = SkipConvLSTM(input_dim = 64, hidden_dim= 64)
-        self.skipLSTM3 = SkipConvLSTM(input_dim = 128, hidden_dim= 128)
-        self.skipLSTM4 = SkipConvLSTM(input_dim = 256, hidden_dim= 256)
+        self.skipLSTM1 = SkipConvLSTM(input_dim = 64, hidden_dim = 32) # Tanto en este, como en los demás, bajaríamos el hidden_dim si sufriésemos de memoria
+        self.skipLSTM2 = SkipConvLSTM(input_dim = 64, hidden_dim= 32)
+        self.skipLSTM3 = SkipConvLSTM(input_dim = 128, hidden_dim= 64)
+        self.skipLSTM4 = SkipConvLSTM(input_dim = 256, hidden_dim= 128)
 
         self.up1 = nn.Sequential(nn.Upsample(scale_factor= 2, mode = "bilinear", align_corners= False),
                                  ConvModule(64,64)) # [-1,64,300,300]
