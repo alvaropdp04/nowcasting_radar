@@ -9,7 +9,7 @@ device = "cuda:0"
 def train_loop(model, optimizer, train_dataloader, val_dataloader, loss_module, num_epoches = 100, patience = 15):
     model.to(device)
     
-    scaler = GradScaler()  # <- para AMP
+    scaler = GradScaler()  
 
     min_loss = float('inf')
     no_improvement = 0
@@ -54,6 +54,7 @@ def train_loop(model, optimizer, train_dataloader, val_dataloader, loss_module, 
             no_improvement = 0
             best_state_dict = model.state_dict()
             torch.save(best_state_dict, "/content/drive/MyDrive/1aniversario/best_model.pt")
+            print("Guardado en Drive")
         else:
             no_improvement += 1
             print(f"No se ha mejorado durante esta época. Si se alcanza dicho contador se finalizará el entrenamiento: {no_improvement}/{patience}")
