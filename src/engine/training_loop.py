@@ -53,6 +53,7 @@ def train_loop(model, optimizer, train_dataloader, val_dataloader, loss_module, 
             min_loss = val_loss
             no_improvement = 0
             best_state_dict = model.state_dict()
+            torch.save(best_state_dict, "/content/drive/MyDrive/1aniversario/best_model.pt")
         else:
             no_improvement += 1
             print(f"No se ha mejorado durante esta época. Si se alcanza dicho contador se finalizará el entrenamiento: {no_improvement}/{patience}")
