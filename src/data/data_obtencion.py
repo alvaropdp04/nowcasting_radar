@@ -53,6 +53,8 @@ def normalizacion_radar(tupla, min_val = -10, max_val = 80):
     x,y = tupla
     x_normalizado = (x-min_val) / (max_val-min_val)
     y_normalizado = (y-min_val) / (max_val-min_val)
+    x_normalizado = x_normalizado.clip(0.0, 1.0)
+    y_normalizado = y_normalizado.clip(0.0, 1.0)
     return x_normalizado, y_normalizado
 
 def generar_dataset(path_shards = "./data/raw/shards/*", props = [0.85,0.1,0.05]):

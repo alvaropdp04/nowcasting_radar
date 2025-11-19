@@ -13,9 +13,9 @@ if __name__ == "__main__":
     modelo = modelMet().to(device)
     optimizer = torch.optim.AdamW(modelo.parameters(), lr = 0.001, betas = (0.9, 0.999), weight_decay= 0.01)
     train_dataset,val_dataset,test_dataset = generar_dataset(path_shards= "./data/raw/shards/*", props = [0.85,0.1,0.05])
-    train_loader = generar_dataloaders(train_dataset, split = "train", batch_size= 64, num_workers= 8)
-    val_loader = generar_dataloaders(val_dataset, split = "val", batch_size= 64, num_workers= 8)
-    test_loader = generar_dataloaders(test_dataset, split = "test", batch_size= 64, num_workers= 8)
+    train_loader = generar_dataloaders(train_dataset, split = "train", batch_size= 8, num_workers= 8)
+    val_loader = generar_dataloaders(val_dataset, split = "val", batch_size= 8, num_workers= 8)
+    test_loader = generar_dataloaders(test_dataset, split = "test", batch_size= 8, num_workers= 8)
 
 
 
