@@ -51,6 +51,8 @@ def decode_npz(tupla):
 
 def normalizacion_radar(tupla, min_val = -10, max_val = 80):
     x,y = tupla
+    x = torch.nan_to_num(x, nan=0.0)
+    y = torch.nan_to_num(y, nan=0.0)
     x_normalizado = (x-min_val) / (max_val-min_val)
     y_normalizado = (y-min_val) / (max_val-min_val)
     x_normalizado = x_normalizado.clip(0.0, 1.0)
