@@ -102,13 +102,13 @@ def generar_dataloaders(dataset, split = "train", batch_size = 64, num_workers =
     número de procesos paralelos a utilizar """
 
     if split == "train":
-        train_loader = DataLoader(dataset, batch_size= batch_size, num_workers = num_workers)
+        train_loader = DataLoader(dataset, batch_size= batch_size, num_workers = num_workers, pin_memory= True, persistent_workers= True)
         return train_loader
     elif split == "val":
-        val_loader = DataLoader(dataset, batch_size= batch_size, num_workers = num_workers)
+        val_loader = DataLoader(dataset, batch_size= batch_size, num_workers = num_workers, pin_memory= True, persistent_workers= True)
         return val_loader
     elif split == "test":
-        test_loader = DataLoader(dataset, batch_size= batch_size, num_workers = num_workers)
+        test_loader = DataLoader(dataset, batch_size= batch_size, num_workers = num_workers, pin_memory= True, persistent_workers= True)
         return test_loader
     else:
         raise ValueError("El tipo de split debe ser [train, val, test]")
