@@ -18,4 +18,4 @@ Más detalles técnicos, instrucciones de uso y documentación se añadirán pro
 ---
 
 **Proyecto actualmente en desarrollo**  
-**Fecha estimada de finalización:** Febrero de 2025
+**Fecha estimada de finalización:** Febrero de 2026
