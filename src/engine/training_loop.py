@@ -6,7 +6,7 @@ from torch.amp import autocast, GradScaler
 
 device = "cuda:0"
 
-def train_loop(model, optimizer, train_dataloader, val_dataloader, loss_module, num_epoches = 100, patience = 15):
+def train_loop(model, optimizer, train_dataloader, val_dataloader, loss_module, num_epoches = 100, patience = 15, save_path = "best_model.pt", scheduler = None):
     model.to(device)
     
     scaler = GradScaler()  
@@ -46,6 +46,9 @@ def train_loop(model, optimizer, train_dataloader, val_dataloader, loss_module, 
             use_amp=True         
         )
 
+        if scheduler is not None:
+            scheduler.step(val_loss)
+
         print(f"Época {epoch+1} finalizada. RESULTADOS: Loss en train: {loss_epoch_train}. Loss en validación: {val_loss}")
 
         if val_loss < min_loss:
@@ -53,7 +56,7 @@ def train_loop(model, optimizer, train_dataloader, val_dataloader, loss_module, 
             min_loss = val_loss
             no_improvement = 0
             best_state_dict = model.state_dict()
-            torch.save(best_state_dict, "/content/drive/MyDrive/1aniversario/best_model.pt")
+            torch.save(best_state_dict, save_path)
             print("Guardado en Drive")
         else:
             no_improvement += 1
